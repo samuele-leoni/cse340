@@ -3,19 +3,19 @@
 /* GLOBAL */
 
 :root {
-    --font-body: "Source Sans 3", Helvetica, sans-serif;
-    --font-headline: Aboreto, "Lilita One", sans-serif;
-    /* colors */
-    --primary-color: #171D1C;
-    --secondary-color: #5863F8;
-    --accent-1: #16BAC5;
-    --accent-2: #e4cdf6da;
+  --font-body: "Source Sans 3", Helvetica, sans-serif;
+  --font-headline: Aboreto, "Lilita One", sans-serif;
+  /* colors */
+  --primary-color: #171D1C;
+  --secondary-color: #5863F8;
+  --accent-1: #16BAC5;
+  --accent-2: #e4cdf6da;
 
-    /* sizes */
-    --font-base: 20px;
-    --smaller-font: 0.6em;
-    --small-font: 0.8em;
-    --large-font: 1.8em;
+  /* sizes */
+  --font-base: 20px;
+  --smaller-font: 0.6em;
+  --small-font: 0.8em;
+  --large-font: 1.8em;
 }
 
 /******* Change Box Model ***************/
@@ -70,11 +70,16 @@ nav ul {
   justify-content: space-between;
 }
 
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
 /********** Main ***************/
 
 main {
   width: 100%;
-  max-width: 600px;
+  max-width: max-content;
   margin: 0 auto;
   padding: 20px 0;
 }
@@ -83,7 +88,8 @@ h1 {
   font-size: var(--large-font);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: var(--font-headline);
 }
 
@@ -131,8 +137,17 @@ img {
 
 /********** Upgrades ***************/
 
+#upgrades-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #upgrades {
   display: grid;
+  margin: auto;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
@@ -144,9 +159,9 @@ img {
 }
 
 .upgrade-box img {
+  padding: 20px 2px;
   width: auto;
   margin: 0;
-  padding: 20px 30px;
   height: 100%;
 }
 
@@ -165,7 +180,7 @@ img {
   body {
     position: relative;
   }
-  
+
   body::before {
     content: "";
     position: absolute;
@@ -176,14 +191,14 @@ img {
     background-image: url("../images/site/small_check.jpg");
     z-index: -2;
   }
-  
+
   body::after {
     content: "";
     position: absolute;
     top: 0.4%;
     left: 2%;
-    bottom:0.4%;
-    right:2%;
+    bottom: 0.4%;
+    right: 2%;
     background-color: rgb(255, 255, 255);
     z-index: -1;
     border-radius: 5px;
@@ -196,6 +211,10 @@ img {
     gap: 40px;
     width: 850px;
     max-width: 100%;
+  }
+
+  .upgrade-box img {
+    padding: 20px 30px;
   }
 
   #delorean-section {
