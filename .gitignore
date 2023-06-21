@@ -17,3 +17,5 @@ node_modules
 
 # Readme.md
 README.md
+
+pnpm-lock.yaml
