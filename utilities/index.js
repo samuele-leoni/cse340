@@ -64,4 +64,26 @@ Util.buildClassificationGrid = async function (data) {
     return grid
 }
 
+/* **************************************
+* Build the inventory detail view HTML
+* ************************************ */
+Util.buildInventoryDetails = async function (data) {
+    let details
+    if (data) {
+        details = `<img id="details-img" src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model} on CSE Motors" />
+        <div id="details-info">
+            <h2>${data.inv_make} ${data.inv_model} Details</h2>
+            <ul id="details-list">
+                <li><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(data.inv_price)}</li>
+                <li><strong>Description:</strong> ${data.inv_description}</li>
+                <li><strong>Color:</strong> ${data.inv_color}</li>
+                <li><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(data.inv_mileage)}</li>
+            </ul>
+        </div>`
+    } else {
+        details += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+    return details
+}
+
 module.exports = Util
