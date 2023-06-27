@@ -15,6 +15,7 @@ const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
+const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
@@ -52,6 +53,8 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Account routes
+app.use("/account", accountRoute)
 // Error Route
 app.get("/footer-error", (req, res, next) => {
   next({ status: 500, message: 'Oh no! There was a crash. Maybe try a different route?' })
