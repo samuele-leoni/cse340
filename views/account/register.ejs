@@ -1,0 +1,27 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %>
+
+<form id="login-form" method="post" action="/register">
+  <div class="login-data">
+    <label for="name">First Name:</label>
+    <input id="first-name" type="text" name="name" required />
+  </div>
+  <div class="login-data">
+    <label for="name">Last Name:</label>
+    <input id="last-name" type="text" name="name" required />
+  </div>
+  <div class="login-data">
+    <label for="email">Email:</label>
+    <input id="email" type="email" name="email" required />
+  </div>
+  <div class="login-data">
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$"
+    title="The password must be at least 12 characters long and contain at least one capital letter, one number, and one special character." />
+  </div>
+
+  <input id="login-button" type="submit" value="Register" />
+
+  <p>Already have an account? <a href="/login">Log In</a></p>
+</form>
