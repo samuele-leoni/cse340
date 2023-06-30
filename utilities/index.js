@@ -78,7 +78,7 @@ Util.buildInventoryDetails = async function (data) {
                 <li><strong>Price:</strong> $${formatter.format(data.inv_price)}</li>
                 <li><strong>Description:</strong> ${data.inv_description}</li>
                 <li><strong>Color:</strong> ${data.inv_color}</li>
-                <li><strong>Miles:</strong> ${formatter.format(data.inv_mileage)}</li>
+                <li><strong>Miles:</strong> ${formatter.format(data.inv_miles)}</li>
             </ul>
         </div>`
     } else {
