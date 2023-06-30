@@ -1,26 +1,24 @@
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %>
-
-<%- messages() %>
-
-<% if (errors) { %>
-  <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
+<% } else { res.redirect('/') } %> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
 <% } %>
 
 <form id="login-form" action="/account/register" method="post">
   <div class="login-data">
     <label for="accountFirstname">First Name:</label>
     <input
-      class="input-data"
       id="accountFirstname"
+      class="input-data"
       type="text"
       name="account_firstname"
+      id="accountFirstname"
       required
+      value="<%= locals.account_firstname %>"
     />
   </div>
   <div class="login-data">
@@ -31,6 +29,7 @@
       type="text"
       name="account_lastname"
       required
+      value="<%= locals.account_lastname %>"
     />
   </div>
   <div class="login-data">
@@ -41,6 +40,7 @@
       type="email"
       name="account_email"
       required
+      value="<%= locals.account_email %>"
     />
   </div>
   <div class="login-data">
