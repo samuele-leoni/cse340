@@ -2,6 +2,8 @@
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
+<%- messages() %>
+
 <form id="login-form" method="post" action="/login">
   <div class="login-data">
     <label for="email">Email:</label>

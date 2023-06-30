@@ -2,26 +2,31 @@
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
-<form id="login-form" method="post" action="/register">
+<form id="login-form" action="/account/register" method="post">
   <div class="login-data">
-    <label for="name">First Name:</label>
-    <input id="first-name" type="text" name="name" required />
+    <label for="account_firstname">First Name:</label>
+    <input id="account_firstname" type="text" name="account_firstname" required />
   </div>
   <div class="login-data">
-    <label for="name">Last Name:</label>
-    <input id="last-name" type="text" name="name" required />
+    <label for="account_lastname">Last Name:</label>
+    <input id="account_lastname" type="text" name="account_lastname" required />
   </div>
   <div class="login-data">
-    <label for="email">Email:</label>
-    <input id="email" type="email" name="email" required />
+    <label for="account_email">Email:</label>
+    <input id="account_email" type="email" name="account_email" required />
   </div>
   <div class="login-data">
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$"
-    title="The password must be at least 12 characters long and contain at least one capital letter, one number, and one special character." />
+    <label for="account_password">Password:</label>
+    <input
+      id="account_password"
+      type="password"
+      name="account_password"
+      required
+      pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$"
+      title="The password must be at least 12 characters long and contain at least one capital letter, one number, and one special character."
+    />
   </div>
 
   <input id="login-button" type="submit" value="Register" />
-
   <p>Already have an account? <a href="/login">Log In</a></p>
 </form>
