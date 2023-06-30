@@ -87,4 +87,16 @@ Util.buildInventoryDetails = async function (data) {
     return details
 }
 
+/* **************************************
+* Build the classification options HTML
+* ************************************ */
+Util.getClassifications = async function (req, res, next) {
+    let data = await invModel.getClassifications()
+    let options = ''
+    data.rows.forEach((row) => {
+        options += `<option value="${row.classification_id}">${row.classification_name}</option>`
+    })
+    return options
+}
+
 module.exports = Util
