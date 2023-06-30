@@ -218,6 +218,23 @@ img {
   text-align: center;
 }
 
+.input-data:required:invalid {
+  border: 2px solid red;
+}
+
+.input-data:required:valid {
+  border: 2px solid green;
+}
+
+#passwordRequirements {
+  font-weight: bold;
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(225, 225, 225, 0.81);
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 60em) {
   nav ul {
     padding: 20px 30px;

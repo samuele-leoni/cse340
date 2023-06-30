@@ -2,28 +2,60 @@
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <form id="login-form" action="/account/register" method="post">
   <div class="login-data">
-    <label for="account_firstname">First Name:</label>
-    <input id="account_firstname" type="text" name="account_firstname" required />
-  </div>
-  <div class="login-data">
-    <label for="account_lastname">Last Name:</label>
-    <input id="account_lastname" type="text" name="account_lastname" required />
-  </div>
-  <div class="login-data">
-    <label for="account_email">Email:</label>
-    <input id="account_email" type="email" name="account_email" required />
-  </div>
-  <div class="login-data">
-    <label for="account_password">Password:</label>
+    <label for="accountFirstname">First Name:</label>
     <input
-      id="account_password"
+      class="input-data"
+      id="accountFirstname"
+      type="text"
+      name="account_firstname"
+      required
+    />
+  </div>
+  <div class="login-data">
+    <label for="accountLastname">Last Name:</label>
+    <input
+      class="input-data"
+      id="accountLastname"
+      type="text"
+      name="account_lastname"
+      required
+    />
+  </div>
+  <div class="login-data">
+    <label for="accountEmail">Email:</label>
+    <input
+      class="input-data"
+      id="accountEmail"
+      type="email"
+      name="account_email"
+      required
+    />
+  </div>
+  <div class="login-data">
+    <label for="accountPassword">Password:</label>
+    <span id="passwordRequirements">
+      Passwords must be at least 12 characters and contain at least 1 number, 1
+      capital letter and 1 special character
+    </span>
+    <input
+      class="input-data"
       type="password"
       name="account_password"
+      id="accountPassword"
       required
-      pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$"
-      title="The password must be at least 12 characters long and contain at least one capital letter, one number, and one special character."
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
     />
   </div>
 
