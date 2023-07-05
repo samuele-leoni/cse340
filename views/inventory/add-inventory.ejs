@@ -16,10 +16,9 @@
       class="input-data"
       type="text"
       name="inv_make"
-      id="invMake"
       required
       value="<%= locals.inv_make %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -29,10 +28,9 @@
       class="input-data"
       type="text"
       name="inv_model"
-      id="invModel"
       required
       value="<%= locals.inv_model %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -40,15 +38,14 @@
     <input
       id="invYear"
       class="input-data"
-      type="text"
+      type="number"
       name="inv_year"
       min="1900"
       max="<%- thisYear %>"
-      id="invYear"
       required
       title="Vehicle year cannot contain spaces or special characters."
       value="<%= locals.inv_year %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -57,7 +54,6 @@
       id="invDescription"
       class="input-data"
       name="inv_description"
-      id="invDescription"
       required
     >
 <%= locals.inv_description %></textarea
@@ -71,10 +67,9 @@
       class="input-data"
       type="text"
       name="inv_image"
-      id="invImage"
       required
       value="/images/vehicles/no-image.png"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -84,10 +79,9 @@
       class="input-data"
       type="text"
       name="inv_thumbnail"
-      id="invThumbnail"
       required
       value="/images/vehicles/no-image-tn.png"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -99,10 +93,9 @@
       step="0.01"
       min="0"
       name="inv_price"
-      id="invPrice"
       required
       value="<%= locals.inv_price %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -113,10 +106,9 @@
       min="0"
       type="number"
       name="inv_miles"
-      id="invMiles"
       required
       value="<%= locals.inv_miles %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -126,10 +118,9 @@
       class="input-data"
       type="text"
       name="inv_color"
-      id="invColor"
       required
       value="<%= locals.inv_color %>"
-    />
+    >
   </div>
 
   <div class="form-data">
@@ -139,5 +130,5 @@
     </select>
   </div>
 
-  <input class="link" type="submit" value="Add Vehicle" />
+  <input class="link" type="submit" value="Add Vehicle" >
 </form>
