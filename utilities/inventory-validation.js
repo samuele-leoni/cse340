@@ -89,7 +89,6 @@ validate.checkInventoryData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
         let classifications = await utilities.getClassifications(classification_id)
-        console.log(classifications)
         let thisYear = new Date().getFullYear()
         res.render("./inventory/add-inventory", {
             errors,
