@@ -38,7 +38,7 @@ validate.checkClassificationData = async (req, res, next) => {
 }
 
 /*  **********************************
- *  Registration Data Validation Rules
+ *  Inventory Data Validation Rules
  * ********************************* */
 validate.inventoryRules = () => {
     let thisYear = new Date().getFullYear()
@@ -80,7 +80,7 @@ validate.inventoryRules = () => {
 }
 
 /* ******************************
- * Check data and return errors or continue to registration
+ * Check data and return errors or continue to add inventory item
  * ***************************** */
 validate.checkInventoryData = async (req, res, next) => {
     const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
@@ -88,7 +88,7 @@ validate.checkInventoryData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
-        let classifications = await utilities.getClassifications()
+        let classifications = await utilities.getClassifications(classification_id)
         let thisYear = new Date().getFullYear()
         res.render("./inventory/add-inventory", {
             errors,
@@ -97,6 +97,32 @@ validate.checkInventoryData = async (req, res, next) => {
             classifications,
             thisYear,
             inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
+        })
+        return
+    }
+    next()
+}
+
+/* ******************************
+ * Check data and return errors or continue to edit inventory item
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+    const { inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+    let errors = []
+    
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        let classifications = await utilities.getClassifications(classification_id)
+        let thisYear = new Date().getFullYear()
+        const itemName = `${inv_make} ${inv_model}`
+        res.render("./inventory/edit-inventory", {
+            errors,
+            title: `Edit ${itemName}`,
+            nav,
+            classifications,
+            thisYear,
+            inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id
         })
         return
     }

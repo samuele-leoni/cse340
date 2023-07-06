@@ -122,8 +122,7 @@ h2 {
   width: fit-content;
 }
 
-.card a,
-.link {
+.card a, .link, table a {
   background-color: var(--secondary-color);
   padding: 5px 10px;
   border-radius: 5px;
@@ -132,9 +131,12 @@ h2 {
   text-decoration: none;
 }
 
-.card a:hover,
-.link:hover {
+.card a:hover, .link:hover, table a:hover {
   background-color: var(--accent-1);
+}
+
+table a {
+  border-radius: 0;
 }
 
 img {
@@ -236,6 +238,16 @@ form {
 
 .view {
   grid-row: 2/3;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td, table th {
+  border: 1px solid black;
+  padding: 8px;
 }
 
 @media only screen and (min-width: 60em) {
