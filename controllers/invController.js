@@ -56,11 +56,11 @@ invCont.buildAddClassification = async function (req, res) {
  *  Add a new classification
  * ************************** */
 invCont.addClassification = async (req, res) => {
-    let nav = await utilities.getNav()
     const { classification_name } = req.body
-
+    
     const regResult = await invModel.addClassification(classification_name)
-
+    
+    let nav = await utilities.getNav()
     if (regResult) {
         req.flash(
             "notice",
