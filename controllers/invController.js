@@ -69,6 +69,7 @@ invCont.addClassification = async (req, res) => {
         res.status(201).render("./inventory/management", {
             title: "Inventory Management",
             nav,
+            classifications
         })
     } else {
         req.flash("notice", "Sorry, there was an error adding the classification.")
@@ -108,6 +109,7 @@ invCont.addInventory = async (req, res) => {
         res.status(201).render("./inventory/management", {
             title: "Inventory Management",
             nav,
+            classifications
         })
     } else {
         req.flash("notice", "Sorry, there was an error adding the vehicle.")
@@ -240,7 +242,7 @@ invCont.deleteInventory = async (req, res) => {
     const deleteResult = await invModel.deleteInventoryItem(inv_id)
 
     if (deleteResult) {
-        const itemName = deleteResult.inv_make + " " + deleteResult.inv_model
+        const itemName = inv_make + " " + inv_model
         req.flash("notice", `The ${itemName} was successfully deleted.`)
         res.redirect("/inv/")
     } else {
