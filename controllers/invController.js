@@ -135,4 +135,35 @@ invCont.getInventoryJSON = async (req, res, next) => {
     }
 }
 
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.buildEditInventory = async function (req, res, next) {
+    const inv_id = parseInt(req.params.inv_id)
+    let nav = await utilities.getNav()
+    const invData = await invModel.getInventoryById(inv_id)
+    const vehicle = invData[0]
+    const classifications = await utilities.getClassifications(vehicle.classification_id)
+    const itemName = `${vehicle.inv_make} ${vehicle.inv_model}`
+    let thisYear = new Date().getFullYear()
+    res.render("./inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      thisYear,
+      classifications,
+      errors: null,
+      inv_id: vehicle.inv_id,
+      inv_make: vehicle.inv_make,
+      inv_model: vehicle.inv_model,
+      inv_year: vehicle.inv_year,
+      inv_description: vehicle.inv_description,
+      inv_image: vehicle.inv_image,
+      inv_thumbnail: vehicle.inv_thumbnail,
+      inv_price: vehicle.inv_price,
+      inv_miles: vehicle.inv_miles,
+      inv_color: vehicle.inv_color,
+      classification_id: vehicle.classification_id
+    })
+  }
+
 module.exports = invCont

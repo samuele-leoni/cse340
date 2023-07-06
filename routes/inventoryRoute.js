@@ -36,6 +36,13 @@ router.post(
     utilities.handleErrors(invController.addInventory)
 );
 
+// Route to the get inventory JSON
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to the edit inventory item
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
+// Route to the update inventory item
+router.post("/update", utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;
