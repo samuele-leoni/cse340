@@ -92,11 +92,15 @@ Util.buildInventoryDetails = async function (data) {
 /* **************************************
 * Build the classification options HTML
 * ************************************ */
-Util.getClassifications = async function (req, res, next) {
+Util.getClassifications = async function (selected = -1) {
     let data = await invModel.getClassifications()
     let options = ''
     data.rows.forEach((row) => {
-        options += `<option value="${row.classification_id}">${row.classification_name}</option>`
+        options += `<option value="${row.classification_id}"`
+        if (selected == row.classification_id) {
+            options += ' selected'
+        }
+        options += `>${row.classification_name}</option>`
     })
     return options
 }
