@@ -1,0 +1,71 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+<h2>Confirm Deletion - The delete is permanent.</h2>
+<form action="/inv/delete" method="post">
+  <div class="form-data">
+    <label for="invMake">Vehicle Make:</label>
+    <input
+      readonly
+      id="invMake"
+      class="input-data"
+      type="text"
+      name="inv_make"
+      required
+      value="<%= locals.inv_make %>"
+    >
+  </div>
+
+  <div class="form-data">
+    <label for="invModel">Vehicle Model:</label>
+    <input
+      readonly
+      id="invModel"
+      class="input-data"
+      type="text"
+      name="inv_model"
+      required
+      value="<%= locals.inv_model %>"
+    >
+  </div>
+
+  <div class="form-data">
+    <label for="invYear">Vehicle Year:</label>
+    <input
+      readonly
+      id="invYear"
+      class="input-data"
+      type="number"
+      name="inv_year"
+      required
+      title="Vehicle year cannot contain spaces or special characters."
+      value="<%= locals.inv_year %>"
+    >
+  </div>
+
+  <div class="form-data">
+    <label for="invPrice">Vehicle Price:</label>
+    <input
+      readonly
+      id="invPrice"
+      class="input-data"
+      type="number"
+      step="0.01"
+      min="0"
+      name="inv_price"
+      required
+      value="<%= locals.inv_price %>"
+    >
+  </div>
+
+  <input id="submit" class="link" type="submit" name="submit" value="Delete Vehicle" >
+
+  <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%=
+  locals.inv_id %>" <% } %>>
+</form>
