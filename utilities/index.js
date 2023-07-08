@@ -140,4 +140,16 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+/* ****************************************
+ * Check Account Type
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+    if (res.locals.loggedin && (res.locals.accountData.account_type == "Admin" || res.locals.accountData.account_type == "Employee")) {
+        next()
+    } else {
+        req.flash("notice", "You do not have permission to view this page.")
+        return res.redirect("/account/login")
+    }
+}
+
 module.exports = Util

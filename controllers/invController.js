@@ -59,7 +59,8 @@ invCont.addClassification = async (req, res) => {
     const { classification_name } = req.body
     
     const regResult = await invModel.addClassification(classification_name)
-    
+    const classifications = await utilities.getClassifications()
+
     let nav = await utilities.getNav()
     if (regResult) {
         req.flash(
@@ -77,6 +78,7 @@ invCont.addClassification = async (req, res) => {
             title: "Add Classification",
             nav,
             errors: null,
+            classifications
         })
     }
 }

@@ -4,6 +4,7 @@ const router = new express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
+const { check } = require("express-validator")
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
