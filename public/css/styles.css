@@ -203,6 +203,11 @@ form {
   padding: 20px;
 }
 
+.second-form {
+  margin-top: 20px;
+}
+
+
 .form-data {
   display: grid;
   grid-template-columns: 1fr;
@@ -250,7 +255,21 @@ table td, table th {
   padding: 8px;
 }
 
+input:disabled {
+  background-color: lightgray;
+  color: gray;
+}
+
+input:disabled:hover {
+  background-color: lightgray;
+  color: gray;
+}
+
 @media only screen and (min-width: 60em) {
+  .second-form{
+    margin-top: 0;
+    grid-row: 3/4;
+  }
 
   header, nav, footer {
     width: 90%;
