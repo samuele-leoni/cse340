@@ -4,6 +4,7 @@ const router = new express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
+const { check } = require("express-validator")
 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
@@ -27,6 +28,28 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
+)
+
+// Process the logout attempt
+router.get("/logout", utilities.handleErrors(accountController.accountLogout))
+
+// Route to build the edit account view
+router.get("/edit/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildEditAccount));
+
+// Route to update the account
+router.post(
+  "/update-info",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Route to update the account password
+router.post(
+  "/update-password",
+  regValidate.passwordRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updatePassword)
 )
 
 module.exports = router;
