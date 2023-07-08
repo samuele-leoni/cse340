@@ -33,4 +33,7 @@ router.post(
 // Process the logout attempt
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
 
+// Route to build the edit account view
+router.get("/edit:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildEditAccount));
+
 module.exports = router;

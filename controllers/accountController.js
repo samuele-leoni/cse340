@@ -119,4 +119,13 @@ async function accountLogout(req, res) {
   res.redirect("/")
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout }
+async function buildEditAccount(req, res) {
+  let nav = await utilities.getNav()
+  res.render("account/edit-account", {
+    title: "Edit Account",
+    nav,
+    errors: null,
+  })
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout, buildEditAccount }
