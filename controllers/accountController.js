@@ -115,7 +115,7 @@ async function buildManagement(req, res) {
 }
 
 async function accountLogout(req, res) {
-  res.cookie("jwt", "")
+  res.clearCookie("jwt")
   res.redirect("/")
 }
 
