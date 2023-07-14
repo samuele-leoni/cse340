@@ -212,18 +212,12 @@ async function buildDeleteAccount(req, res) {
  *  Process delete request
  * ************************************ */
 async function deleteAccount(req, res) {
-  let x = 0
-  console.log((x++).toString())
   let nav = await utilities.getNav()
-  console.log((x++).toString())
+
   const { account_id, account_password } = req.body
-  console.log((x++).toString())
-  console.log(account_id)
-  console.log(account_password)
 
   const accountData = await accountModel.getAccountById(account_id)
-  console.log((x++).toString())
-  console.log(accountData.account_password)
+
   if (!accountData) {
     req.flash("notice", "Something went wrong. Please try again.")
     res.status(400).render("./account/delete-account", {
@@ -236,43 +230,29 @@ async function deleteAccount(req, res) {
   }
 
   try {
-    console.log((x++).toString())
-    const b = await bcrypt.compare(account_password, accountData.account_password)
-    console.log(b)
-    if(b) {
-      console.log((x++).toString())
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
       const deleteResult = await accountModel.deleteAccount(account_id)
-      console.log((x++).toString())
       if (deleteResult) {
-        console.log((x++).toString())
         req.flash("notice", "Your account was successfully deleted.")
-        console.log((x++).toString())
         res.clearCookie("jwt")
-        console.log((x++).toString())
         return res.redirect("/account/login")
       } else {
-        console.log((x++).toString())
         req.flash("notice", "Sorry, the delete failed.")
-        console.log((x++).toString())
         res.status(501).render("./account/delete-account", {
           title: `Delete Account`,
           nav,
           errors: null,
           account_id
         })
-        console.log((x++).toString())
       }
     } else {
-      console.log((x++).toString())
       req.flash("notice", "Wrong password. Please try again.")
-      console.log((x++).toString())
       res.status(501).render("./account/delete-account", {
         title: `Delete Account`,
         nav,
         errors: null,
         account_id
       })
-      console.log((x++).toString())
     }
   } catch (error) {
     return new Error('Access Forbidden')
