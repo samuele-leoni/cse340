@@ -265,6 +265,14 @@ input:disabled:hover {
   color: gray;
 }
 
+#delete-button {
+  background-color: rgb(230, 0, 0);
+}
+
+#delete-button:hover {
+  background-color: rgb(254, 61, 61);
+}
+
 @media only screen and (min-width: 60em) {
   .second-form{
     margin-top: 0;

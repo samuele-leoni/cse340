@@ -52,4 +52,15 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 )
 
+// Route to build the delete account view
+router.get("/delete/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildDeleteAccount));
+
+// Route to delete the account
+router.post(
+  "/delete",
+  regValidate.passwordRules(),
+  regValidate.checkDeleteData,
+  utilities.handleErrors(accountController.deleteAccount)
+)
+
 module.exports = router;
