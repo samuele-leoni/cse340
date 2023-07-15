@@ -1,8 +1,6 @@
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %>
-
-<%- messages() %>
+<% } else { res.redirect('/') } %> <%- messages() %>
 
 <div class="view">
   <h2>Welcome <%- locals.accountData.account_firstname %></h2>
@@ -10,12 +8,21 @@
   <a class="link" href="/account/edit/<%- locals.accountData.account_id %>"
     >Edit Account information</a
   >
- <p> <a href="/account/delete/<%- locals.accountData.account_id %>" class="link" id="delete-button">Delete Account</a></p>
+  <p>
+    <a
+      href="/account/delete/<%- locals.accountData.account_id %>"
+      class="link"
+      id="delete-button"
+      >Delete Account</a
+    >
+  </p>
+
+  <h3>Reviews</h3>
+  <p><a href="/review/myreviews/<%- locals.accountData.account_id %>" class="link">View my reviews</a></p>
 
   <% if(locals.accountData.account_type == 'Admin' ||
   locals.accountData.account_type == "Employee") { %>
   <h3>Inventory Management</h3>
   <p><a href="/inv/" class="link">Manage inventory</a></p>
   <% } %>
-
 </div>

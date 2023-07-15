@@ -1,0 +1,45 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect('/') } %> <%- messages() %> <% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<form action="/review/edit" method="post">
+  <div class="form-data">
+    <label for="reviewTitle">Title:</label>
+    <input
+      id="reviewTitle"
+      class="input-data"
+      type="text"
+      name="review_title"
+      required
+      value="<%= locals.review_title %>"
+    >
+  </div>
+  <div class="form-data">
+    <label for="reviewText">Review:</label>
+    <textarea id="reviewText" class="input-data" name="review_text" required><%= locals.review_text %></textarea>
+  </div>
+  <div class="form-data">
+    <label for="reviewRating">Rating (0 lowest -> 10 highest):</label>
+    <input
+      id="reviewRating"
+      class="input-data"
+      type="number"
+      min="0"
+      max="10"
+      name="review_rating"
+      required
+      value="<%= locals.review_rating %>"
+    >
+  </div>
+
+  <input class="input-link" type="submit" value="Publish Review" >
+
+  <input type="hidden" name="review_id" <% if(locals.review_id) { %> value="<%=
+  locals.review_id %>" <% } %>>
+</form>
