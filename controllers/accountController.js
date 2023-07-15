@@ -194,4 +194,69 @@ async function updatePassword(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout, buildEditAccount, updateAccount, updatePassword }
+/* ****************************************
+ * Build delete view
+ * ************************************ */
+async function buildDeleteAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_id } = req.params
+  res.render("account/delete-account", {
+    title: "Delete Account",
+    nav,
+    errors: null,
+    account_id
+  })
+}
+
+/* ****************************************
+ *  Process delete request
+ * ************************************ */
+async function deleteAccount(req, res) {
+  let nav = await utilities.getNav()
+
+  const { account_id, account_password } = req.body
+
+  const accountData = await accountModel.getAccountById(account_id)
+
+  if (!accountData) {
+    req.flash("notice", "Something went wrong. Please try again.")
+    res.status(400).render("./account/delete-account", {
+      title: "Delete Account",
+      nav,
+      errors: null,
+      account_id,
+    })
+    return
+  }
+
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      const deleteResult = await accountModel.deleteAccount(account_id)
+      if (deleteResult) {
+        req.flash("notice", "Your account was successfully deleted.")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+      } else {
+        req.flash("notice", "Sorry, the delete failed.")
+        res.status(501).render("./account/delete-account", {
+          title: `Delete Account`,
+          nav,
+          errors: null,
+          account_id
+        })
+      }
+    } else {
+      req.flash("notice", "Wrong password. Please try again.")
+      res.status(501).render("./account/delete-account", {
+        title: `Delete Account`,
+        nav,
+        errors: null,
+        account_id
+      })
+    }
+  } catch (error) {
+    return new Error('Access Forbidden')
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement, accountLogout, buildEditAccount, updateAccount, updatePassword, buildDeleteAccount, deleteAccount }

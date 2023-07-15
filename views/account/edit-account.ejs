@@ -42,7 +42,7 @@
       value="<%= locals.account_email %>"
     >
   </div>
-  <input disabled id="submit" class="link" type="submit" value="Update Info" >
+  <input disabled id="submit" class="input-link" type="submit" value="Update Info" >
   <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%=
   locals.account_id %>" <% } %>>
 </form>
@@ -65,7 +65,7 @@
           capital letter and 1 special character"
     >
   </div>
-  <input class="link" type="submit" value="Update Password" >
+  <input class="input-link" type="submit" value="Update Password" >
   <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%=
   locals.account_id %>" <% } %>>
 </form>

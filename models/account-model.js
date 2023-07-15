@@ -81,4 +81,18 @@ async function updatePassword(account_id, account_password) {
     }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword }
+/* *****************************
+ * Delete account
+ * ***************************** */
+async function deleteAccount(account_id) {
+    try {
+        const result = await pool.query(
+            'DELETE FROM account WHERE account_id = $1 RETURNING *',
+            [account_id])
+        return result.rows[0]
+    } catch (error) {
+        return error.message
+    }
+}
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, deleteAccount }

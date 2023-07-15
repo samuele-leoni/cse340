@@ -167,7 +167,7 @@ validate.passwordRules = () => {
 }
 
 /* ******************************
- * Check data and return errors or continue to registration
+ * Check data and return errors or continue to update
  * ***************************** */
 validate.checkUpdateData = async (req, res, next) => {
     const { account_id, account_firstname, account_lastname, account_email } = req.body
@@ -183,6 +183,26 @@ validate.checkUpdateData = async (req, res, next) => {
             account_firstname,
             account_lastname,
             account_email,
+        })
+        return
+    }
+    next()
+}
+
+/* ******************************
+ * Check data and return errors or continue to account deletion
+ * ***************************** */
+validate.checkDeleteData = async (req, res, next) => {
+    const { account_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("account/delete-account", {
+            errors,
+            title: "Delete Account",
+            nav,
+            account_id
         })
         return
     }
